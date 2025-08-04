@@ -20,16 +20,14 @@ if args.m:
     # -m
     # filter through tools based on words in name of tool
     [print(f"{i+1}: {tool}") for i, tool in enumerate(found_tools) if args.m.lower() in tool.lower()]
-elif args.n:
-    # -n
-    # filter through tools based on the number of the tool
-    print(os.listdir(args.n))
-else:
+    selection = input()
+elif not args.n:
     # no args
     # display all tools
     [print(f"{i+1}: {tool}") for i, tool in enumerate(found_tools)]
-
-selection = input()
+    selection = input()
+else:
+    selection = int(args.n)
 while True:
     if check_int(selection):
         break
