@@ -1,6 +1,6 @@
 import sys, os
 import argparse as arg
-from usefulFuncs.py import check_int
+from usefulFuncs import check_int
 import argcomplete
 
 parser = arg.ArgumentParser()
@@ -38,7 +38,9 @@ while True:
 
 drive = drive[int(selection)+1].split('\n')[1:-1]
 script = f'Tools/{drive[0].split(' = ')[1].strip()}'
-inputs = [input.split(' = ')[1].strip() for input in drive[1:-1]]
+inputs = [input(d.split(' = ')[1]) for d in drive[1:-1]]
 run = drive[-1].split(' = ')[1].split('{}')
-run = ''.join([run[i]+inputs[i] for i in range(len(inputs))])
-print(f"")
+run[0] = run[0][:7] + "Tools/" + run[0][7:]
+run = ''.join([run[i]+inputs[i] for i in range(len(inputs)) if inputs[i] != ''])
+print(run)
+os.system(run)

@@ -9,11 +9,11 @@ from usefulFuncs import check_float
 
 # arguments
 arg_parser = arg.ArgumentParser()
-arg_parser.add_argument('-f1','--file1')
-arg_parser.add_argument('-f2','--file2')
-arg_parser.add_argument('-a','--Absolute')
-arg_parser.add_argument('-p','--Percent')
-arg_parser.add_argument('-c','--Columns')
+arg_parser.add_argument('-f1', '--file1')
+arg_parser.add_argument('-f2', '--file2')
+arg_parser.add_argument('-a', '--Absolute')
+arg_parser.add_argument('-p', '--Percent')
+arg_parser.add_argument('-c', '--Columns', default=None, type=lambda x: x or None)
 arg = arg_parser.parse_args()
 
 # Load data sets
@@ -27,10 +27,11 @@ if np.shape(data_set1) != np.shape(data_set2):
         quit()
 
 # calc the basic amount of all diffs for either all columns or a selection of columns
-if arg.Columns is None:
+print(arg.Columns)
+if not arg.Columns:
     cols = range(data_set1.shape[0])
 else:
-    cols = arg.Columns.split(' ')
+    cols = arg.Columns.split(',')
     cols = [int(c) for c in cols]
 
 diffs = np.array([data_set1[i] - data_set2[i] for i in cols])
