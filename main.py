@@ -36,11 +36,16 @@ while True:
     else:
         print('Please enter a valid number')
 
-drive = drive[int(selection)+1].split('\n')[1:-1]
+
+# process inputs
+drive  = drive[int(selection)+1].split('\n')[1:-1]
 script = f'Tools/{drive[0].split(' = ')[1].strip()}'
 inputs = [input(d.split(' = ')[1]) for d in drive[1:-1]]
-run = drive[-1].split(' = ')[1].split('{}')
+run    = drive[-1].split(' = ')[1].split('{}')
 run[0] = run[0][:7] + "Tools/" + run[0][7:]
 run = ''.join([run[i]+inputs[i] for i in range(len(inputs)) if inputs[i] != ''])
+
+# run inputs
+print("="*50)
 print(run)
 os.system(run)

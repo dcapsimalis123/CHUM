@@ -8,6 +8,6 @@ input1 = path to csv1
 input2 = path to csv2 
 input3 = What kind of test do you want to run? (p for percent, a for absolute) 
 input4 = What is the threshold value (percent is done in decimal) 
-input5 = What columns do you want to examine (input number of column, space delimit. If all, press enter) 
+input5 = What columns do you want to examine (input number of column, comma delimit. If all, press enter) 
 script = python Col_Comparison.py -f1 {} -f2 {} -{} {} -c {} 
 ==================================================
